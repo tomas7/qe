@@ -48,19 +48,25 @@ router.use(function timeLog (req, res, next) {
     next()
   });
 
-app.post('/getImg', (req, res) => {
-  console.log('t')
+app.post('/getImg', async(req, res) => {
+  const {resources} = await cloudinary.search.expression('folder:samples')
+  .max_results(5)
+  .execute();
+
+  const publivIds = resources.map(file => file);
+
+  res.json(publivIds);
 });
 
   app.get('/getImg', async (req, res, next) => {
     // res.send('respond with a resource');
     const {resources} = await cloudinary.search.expression('folder:samples')
-    .max_results(2)
+    .max_results(5)
     .execute();
 
     const publivIds = resources.map(file => file.public_id);
 
-    res.send("t");
+    res.json({"res":"1"});
   });
 
   
