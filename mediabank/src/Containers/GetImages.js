@@ -33,7 +33,7 @@ function GetImages() {
         element.download = "image.jpg";
         element.click();
       };
-    async function getImages ( url =`http://localhost:5000/getImg`) {
+    async function getImages ( url =`http://localhost:9901/getImg`) {
         const response = await fetch(url, {
             method: 'post',
             headers: { 'Content-type': 'application/json' },
